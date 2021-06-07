@@ -1,0 +1,45 @@
+### BSPWM CONFIG SHORTCUTS ###
+
+# Reload sxhkd
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Quit/Restart BSPWM
+super + shift + {q,r}
+	bspc {quit,wm -r}
+
+### WINDOW MANAGEMENT ###
+
+super + q
+	bspc node -c
+
+super + shift + q
+	bspc node -k
+
+super + {1-9}
+	bspc desktop -f '^{1-9}'
+
+super + shift + {1-9}
+	bspc node -d '^{1-9}'
+
+super + {s, d, f}
+	bspc node -t {tiled,floating,fullscreen}
+
+super + shift + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+super + {u,shift + u}
+	bspc node -g urgent={on,off}
+
+super + {_,shift +} Tab
+	bspc node -f {next,prev}.local.window
+
+### WINDOW SHORTCUTS ###
+
+# Open Terminal
+super + Return
+	alacritty
+
+# Open Rofi
+super + p
+	rofi -show run

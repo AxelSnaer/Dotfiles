@@ -1,0 +1,42 @@
+Config { 
+	font = "xft:FiraCode Nerd Font:pixelsize=21:antialias=true:hinting=true",
+	bgColor = "#292d3e",
+	fgColor = "white",
+	position = Static { xpos = 0, ypos = 0, width = 2560, height = 40 },
+	lowerOnStart = True,
+	commands = [ 
+		Run Cpu [
+			"-t", "<total>%", 
+			"-L","3",
+			"-H","50",
+			"-w","2"
+			] 10,
+        Run Memory [
+			"-t","<usedratio>%",
+			"-w","2"
+			] 10,
+        Run Swap [] 10,
+        Run Com "uname" [
+			"-s",
+			"-r"
+			] "" 36000,
+    	Run Date " %A, %B %_d %Y -  %H:%M:%S" "date" 10,
+		Run Battery [
+			"-t", "<acstatus><left>%",
+			"-L", "20",
+			"-H", "80",
+			"-w", "3",
+			"--",
+			"-i", "",
+			"-O", "",
+			"-o", "",
+			"--lows", "",
+			"--mediums", "", 
+			"--highs", ""
+			] 10,
+		Run UnsafeStdinReader
+	],
+	sepChar = "%",
+	alignSep = "}{",
+	template = "  <fc=#666666>|</fc> %UnsafeStdinReader% <fc=#666666>|</fc>}<fc=#cccccc>%date%</fc>{ <fc=#666666> |</fc><fc=#00ffaa>%battery%</fc><fc=#666666> | </fc><fc=#ff5500> %cpu%</fc><fc=#666666> | </fc><fc=#ffaa00>﬙ %memory%</fc><fc=#666666> | </fc><fc=#00ccff> %uname%</fc>  "
+}
